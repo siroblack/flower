@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little Flower for Izell 🌸</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ivory: #F7F2EA;
+  --paper: #F7F2EA;
+  --blush: #EADBD3;
+  --rose: #C99598;
+  --brown: #79665B;
+  --line: #E5D8CD;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 30px 15px;
+  background: var(--ivory);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--brown);
+}
+
+/* MAIN CARD */
+
+.card {
+  width: min(100%, 540px);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 45px #756b5812;
+  animation: appear 1s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* TOP LABEL */
+
+.top-label {
+  padding: 23px 28px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--brown);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.top-label span:last-child {
+  color: var(--rose);
+}
+
+/* FLOWER AREA */
+
+.hero {
+  position: relative;
+  height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    ellipse at center,
+    #F4E8E0 0%,
+    #EEDFD7 65%,
+    #EADBD3 100%
+  );
+}
+
+.bouquet {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: float 5s ease-in-out infinite;
+}
+
+.bouquet img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 14px 15px #76534420);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* FALLING PETALS */
+
+#petals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -20px;
+  width: 9px;
+  height: 13px;
+  background: #FFF8F1;
+  border-radius: 90% 0 90% 0;
+  opacity: .7;
+  animation: falling var(--duration) linear infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes falling {
+  to {
+    transform: translate(var(--drift), 500px) rotate(450deg);
+    opacity: 0;
+  }
+}
+
+/* OPENING SECTION */
+
+.opening {
+  padding: 25px 20px 30px;
+  text-align: center;
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+
+.opening-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--rose);
+  letter-spacing: .5px;
+  margin-bottom: 13px;
+}
+
+.opening button {
+  border: none;
+  border-bottom: 1px solid var(--rose);
+  padding: 7px 4px;
+  background: transparent;
+  color: var(--brown);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.opening button:hover {
+  color: var(--rose);
+  letter-spacing: 3px;
+}
+
+/* MESSAGE SECTION */
+
+.message {
+  display: none;
+  padding: 36px 34px 32px;
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+
+.message.show {
+  display: block;
+  animation: appear .7s ease;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rose);
+}
+
+.section-label::after {
+  content: "";
+  height: 1px;
+  background: var(--line);
+  flex: 1;
+}
+
+.message h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 29px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--brown);
+  margin: 0 0 20px;
+}
+
+.message h1 em {
+  color: var(--rose);
+  font-weight: 400;
+}
+
+.message p {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  line-height: 1.9;
+  color: var(--brown);
+  margin: 0 0 17px;
+}
+
+/* EXTRA NOTE */
+
+.special {
+  display: none;
+  margin-top: 18px;
+  padding: 18px 20px;
+  background: #EEE7DE;
+  border-left: 2px solid var(--rose);
+  animation: appear .5s ease;
+}
+
+.special.show {
+  display: block;
+}
+
+.special p {
+  font-size: 16px;
+  margin: 0;
+  color: var(--brown);
+}
+
+/* BUTTONS */
+
+.button-area {
+  margin-top: 27px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.action-button {
+  border: 1px solid var(--rose);
+  padding: 12px 22px;
+  background: transparent;
+  color: var(--brown);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.action-button:hover {
+  background: var(--rose);
+  color: white;
+  border-color: var(--rose);
+}
+
+.back-button {
+  border: none;
+  padding: 8px 0;
+  background: transparent;
+  color: var(--rose);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background: transparent;
+  color: var(--brown);
+}
+
+/* FOOTER */
+
+.footer {
+  border-top: 1px solid var(--line);
+  margin-top: 32px;
+  padding-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #A99A8B;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.footer span:last-child {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--rose);
+}
+
+/* MOBILE */
+
+@media(max-width: 420px) {
+  body {
+    padding: 12px;
+  }
+
+  .card {
+    border-radius: 6px;
+  }
+
+  .hero {
+    height: 370px;
+  }
+
+  .top-label {
+    padding: 18px 20px 13px;
+    font-size: 9px;
+  }
+
+  .message {
+    padding: 29px 23px 25px;
+  }
+
+  .message h1 {
+    font-size: 25px;
+  }
+
+  .message p {
+    font-size: 16px;
+  }
+
+  .footer {
+    font-size: 9px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="card">
+
+  <!-- TOP LABEL -->
+
+  
+
+  <!-- FLOWER -->
+
+  <section class="hero">
+
+    <div class="bouquet">
+      <img
+        src="https://athaya.co.id/storage/2025/08/wendy-adalah-buket-bunga-dari-athaya-yang-dirangkai-dengan-200-tangkai-mawar.webp"
+        alt="Pink rose bouquet"
+      >
+    </div>
+
+    <div id="petals"></div>
+
+  </section>
+
+  <!-- FIRST SCREEN -->
+
+  <section class="opening" id="opening">
+
+    <div class="opening-text">
+      A little something for you ♡
+    </div>
+
+    <button onclick="openMessage()">
+      A LITTLE NOTE FOR YOU ↗
+    </button>
+
+  </section>
+
+  <!-- MESSAGE SCREEN -->
+
+  <section class="message" id="message">
+
+    <div class="section-label">
+      A note for you
+    </div>
+
+    <h1>
+      A little flower <em>for Izell,</em>
+    </h1>
+
+    <p>
+      with the cutest squeaky voice that somehow makes me miss it.
+      🤏🏻🌸
+    </p>
+
+    <p>
+      May your days always be filled with good things,
+      unexpected happiness, and countless reasons
+      to smile. I hope everything you're working on
+      goes smoothly, and may good things always
+      find their way to you.
+    </p>
+
+    <p>
+      To my favorite cempreng girl, keep being your
+      adorable, silly self! 🌷
+    </p>
+
+    <!-- EXTRA MESSAGE BUTTON -->
+
+    <div class="button-area">
+
+      <button
+        class="action-button"
+        id="noteButton"
+        onclick="toggleNote()"
+      >
+        A LITTLE EXTRA FOR YOU ↗
+      </button>
+
+    </div>
+
+    <!-- HIDDEN EXTRA MESSAGE -->
+
+    <div class="special" id="special">
+
+      <p>
+        Good luck with your diet and workout!
+        Keep showing up for yourself, stay consistent,
+        and don't forget to control those snack cravings.
+        WKWK ♡
+      </p>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+      <span></span>
+      <span>Ell ♡</span>
+    </div>
+
+    <!-- BACK TO FLOWER -->
+
+    <div class="button-area">
+
+      <button
+        class="back-button"
+        onclick="closeMessage()"
+      >
+        ← BACK TO FLOWERS
+      </button>
+
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+
+// FALLING FLOWER PETALS
+
+const layer = document.getElementById("petals");
+
+for (let i = 0; i < 15; i++) {
+
+  const petal = document.createElement("span");
+
+  petal.className = "petal";
+  petal.style.left = Math.random() * 100 + "%";
+
+  petal.style.setProperty(
+    "--duration",
+    (6 + Math.random() * 8) + "s"
+  );
+
+  petal.style.setProperty(
+    "--delay",
+    (-Math.random() * 12) + "s"
+  );
+
+  petal.style.setProperty(
+    "--drift",
+    (-50 + Math.random() * 100) + "px"
+  );
+
+  layer.appendChild(petal);
+
+}
+
+// OPEN MAIN MESSAGE
+
+function openMessage() {
+
+  document.getElementById("opening").style.display = "none";
+
+  const message = document.getElementById("message");
+  message.classList.add("show");
+
+  setTimeout(() => {
+    message.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, 100);
+
+}
+
+// CLOSE MAIN MESSAGE
+
+function closeMessage() {
+
+  const message = document.getElementById("message");
+
+  message.classList.remove("show");
+
+  document.getElementById("opening").style.display = "block";
+
+  document.getElementById("special").classList.remove("show");
+
+  document.getElementById("noteButton").textContent =
+    "A LITTLE EXTRA FOR YOU ↗";
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+// OPEN AND CLOSE EXTRA NOTE
+
+function toggleNote() {
+
+  const note = document.getElementById("special");
+  const button = document.getElementById("noteButton");
+
+  const isOpen = note.classList.toggle("show");
+
+  button.textContent = isOpen
+    ? "CLOSE NOTE ↑"
+    : "A LITTLE EXTRA FOR YOU ↗";
+
+}
+
+</script>
+
+</body>
+</html>
